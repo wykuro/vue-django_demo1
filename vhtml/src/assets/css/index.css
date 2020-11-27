@@ -1,0 +1,48 @@
+#demo {
+    width: 500px;
+    border: 1px solid #000;
+    text-align: center;
+}
+.header>img{
+    width: 300px;
+}
+.imglist img{
+    width: 120px;
+    border-radius: 60px;
+}
+#demo .content .menu{
+    display: flex;
+    align-content: center;
+    padding: 10px;
+}
+#demo .content .menu .item{
+    width: 100px;
+    margin: 0 10px;
+    border: 1px solid #000;
+    height: 30px;
+    line-height: 30px;
+}
+#demo .content .userlist{
+    height: auto;
+    border: 1px solid #000;
+    overflow: hidden;
+    padding: 5px 0 0 2%;
+}
+#demo .content .userlist .user{
+    width: 18%;
+    float: left;
+    margin-right: 2%;
+}
+#demo .content .userlist .user>img{
+    width: 100%;
+}
+.item img{
+    width: 100px;
+}
+.userinfo img{
+    width: 100px;
+}
+#login-userinfo img{
+    width: 100px;
+    border-radius: 50px;
+}

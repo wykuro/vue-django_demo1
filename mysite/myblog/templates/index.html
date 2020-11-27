@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script type="text/javascript" src="../static/js/vue.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+    <div id="demo">
+        <div v-if="onoff">
+            <div class="header">
+                <h1>{{siteinfo.title}}</h1>
+                <img src="/upload/{{siteinfo.logo}}">
+            </div>
+            <div class="content">
+                <div class="menu">
+
+                    <div v-if="item.id==choosed" v-for="item in classes" class="item"
+                        style="background: #777;color: #fff">
+                        <a>[[ item.text ]]</a>
+                    </div>
+                    <div v-else v-on:click="chooseClass(item.id)" class="item">
+                        <a>[[ item.text ]]</a>
+                    </div>
+
+                </div>
+                <div v-if="item.id==choosed" v-for="item in classes" class="userlist">
+                    <p>[[ item.text ]]</p>
+                    <hr>
+                    <div v-if="item.userlist.length>0" v-for="user in item.userlist" class="user">
+                        <img src="/upload/1.jpg">
+                        <p>[[ user.nickName ]]</p>
+                    </div>
+                    <div v-else>无用户</div>
+                </div>
+            </div>
+        </div>
+
+        <input v-model="inputText" type="text" style="width: 490px;height: 30px;">
+        <p>[[ inputText ]]</p>
+        <div class="footer">
+            wykuro
+            <button @click="onoffClick">开关</button>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            delimiters: ['[[ ', ' ]]'],
+            el: "#demo",
+            data: {
+                classes: [],
+                choosed: 1,
+                onoff: true,
+                inputText: "",
+            },
+            mounted() {
+                this.getData()
+            },
+            methods: {
+                getData() {
+                    axios({
+                        url: '/api/',
+                        type: 'josn',
+                        method: 'get',
+                    }).then((res) => {
+                        this.classes = res.data.classes,
+                            console.log(this.classes)
+                    })
+                },
+                chooseClass(id) {
+                    this.choosed = id
+                },
+                onoffClick() {
+                    this.onoff = !this.onoff
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
